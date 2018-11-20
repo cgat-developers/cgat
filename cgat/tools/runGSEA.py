@@ -649,7 +649,7 @@ def plot_random_ES(store_permute, A_W, in_list):
     plt.figure(figsize=(8, 6), dpi=80)
     Rans_plot = store_permute[:, A_W]
     n, bins, patches = plt.hist(
-        Rans_plot, 80, normed=False, color='dodgerblue', alpha=0.9, histtype='bar')
+        Rans_plot, 80, density=False, color='dodgerblue', alpha=0.9, histtype='bar')
     plt.xticks(fontsize=12, weight='bold')
     plt.yticks(fontsize=12, weight='bold')
     plt.xlabel('\nEnrichment Score', **axis_font)
@@ -1311,8 +1311,9 @@ def main(argv=None):
 
     # The histogram of the ES across all genesets
     plt.figure(figsize=(11, 6), dpi=80)
-    n, bins, patches = plt.hist(original_nes, 50, normed=False, facecolor='darkgreen',
-                                alpha=0.9, histtype='step', lw=4, color='darkgreen')
+    n, bins, patches = plt.hist(np.isfinite(original_nes), 50, density=False,
+                                facecolor='darkgreen', alpha=0.9,
+                                histtype='step', lw=4, color='darkgreen')
     plt.xticks(fontsize=12, weight='bold')
     plt.yticks(fontsize=12, weight='bold')
     plt.xlabel('\nNormalized Enrichment scores across genesets', **axis_font)
@@ -1630,7 +1631,7 @@ def main(argv=None):
     # PLOT HISTOGRAM OF JACQUARD
     plt.figure(figsize=(11, 6), dpi=80)
     n, bins, patches = plt.hist(
-        jac_l, 70, normed=1, color='darkgreen', alpha=0.9)
+        jac_l, 70, density=1, color='darkgreen', alpha=0.9)
     plt.xticks(fontsize=12, weight='bold')
     plt.yticks(fontsize=12, weight='bold')
     plt.xlabel('\nJacquard', **axis_font)
